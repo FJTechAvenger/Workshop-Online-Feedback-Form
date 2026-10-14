@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#a30d58">
+  <title>Participant Feedback | CWM Hospital Oncology Department</title>
+  <style>
+    :root {
+      --pink: #b51663;
+      --deep-pink: #8d0d4b;
+      --purple: #63338d;
+      --navy: #17365d;
+      --teal: #178c8c;
+      --pale: #fff5f9;
+      --ink: #243044;
+      --muted: #667085;
+      --line: #e5d5df;
+      --white: #fff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: linear-gradient(145deg, #fff5f9 0%, #f6f2fb 55%, #eef8fa 100%);
+      line-height: 1.5;
+    }
+    .page { max-width: 850px; margin: 0 auto; padding: 24px 14px 40px; }
+    .hero {
+      position: relative; overflow: hidden; text-align: center; color: white;
+      padding: 28px 20px 26px; border-radius: 22px 22px 0 0;
+      background: linear-gradient(125deg, #8d0d4b, #b51663 55%, #63338d);
+    }
+    .hero:before, .hero:after {
+      content: " "; position: absolute; width: 130px; height: 130px;
+      border: 15px solid rgba(255,255,255,.12); border-radius: 50%;
+    }
+    .hero:before { left: -55px; top: -45px; }
+    .hero:after { right: -55px; bottom: -75px; }
+    .eyebrow { text-transform: uppercase; letter-spacing: 1.8px; font-size: .78rem; font-weight: 700; }
+    h1 { font-size: clamp(1.65rem, 5vw, 2.45rem); line-height: 1.12; margin: 10px 0; }
+    .theme { font-size: clamp(1.08rem, 3.4vw, 1.35rem); font-weight: 700; font-style: italic; margin: 13px auto 8px; max-width: 600px; }
+    .hero p { margin: 5px 0; }
+    .ribbons { font-size: 1.5rem; letter-spacing: 8px; margin-top: 10px; }
+    .content {
+      background: #fff; padding: clamp(18px, 4vw, 32px);
+      border: 1px solid #f0d7e3; border-top: 0;
+      border-radius: 0 0 22px 22px; box-shadow: 0 12px 35px rgba(70, 30, 65, .09);
+    }
+    .intro { color: var(--muted); margin: 0 0 22px; }
+    .section-title {
+      margin: 25px 0 12px; padding-bottom: 7px; border-bottom: 2px solid #f3d7e5;
+      color: var(--deep-pink); font-size: 1.08rem;
+    }
+    .rating-table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; }
+    .rating-table th, .rating-table td { padding: 10px 7px; border: 1px solid var(--line); text-align: center; }
+    .rating-table th { background: #fbedf4; color: var(--deep-pink); font-size: .83rem; }
+    .rating-table th:first-child, .rating-table td:first-child { text-align: left; width: 43%; }
+    .rating-table td:first-child { font-size: .92rem; }
+    input[type="radio"], input[type="checkbox"] { accent-color: var(--pink); width: 17px; height: 17px; cursor: pointer; }
+    .session-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; }
+    .choice {
+      display: flex; gap: 10px; align-items: center; padding: 11px 12px;
+      border: 1px solid var(--line); border-radius: 10px; background: #fffafd;
+    }
+    .field { margin: 15px 0; }
+    label.question { display: block; font-weight: 700; margin-bottom: 7px; }
+    textarea, input[type="text"] {
+      display: block; width: 100%; padding: 12px 13px; border: 1px solid #d8c8d2;
+      border-radius: 10px; font: inherit; background: #fff; color: var(--ink);
+    }
+    textarea { min-height: 88px; resize: vertical; }
+    textarea:focus, input:focus { outline: 3px solid rgba(181,22,99,.14); border-color: var(--pink); }
+    .privacy {
+      padding: 13px 15px; background: #f1f8f8; border-left: 4px solid var(--teal);
+      border-radius: 8px; color: #315454; font-size: .9rem; margin: 18px 0;
+    }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+    button {
+      border: 0; border-radius: 10px; padding: 13px 20px; font: inherit;
+      font-weight: 700; cursor: pointer;
+    }
+    .submit { color: #fff; background: linear-gradient(100deg, var(--pink), var(--purple)); flex: 1; }
+    .reset { background: #f2edf2; color: #49374a; }
+    .status { display: none; margin-top: 16px; padding: 13px; border-radius: 9px; background: #fff2d9; color: #754d00; }
+    footer { text-align: center; font-size: .82rem; color: var(--muted); padding: 20px 10px 0; }
+    .small { font-size: .83rem; color: var(--muted); }
+    @media (max-width: 580px) {
+      .page { padding: 12px 8px 26px; }
+      .hero { padding: 23px 14px; }
+      .rating-table th, .rating-table td { padding: 7px 3px; }
+      .rating-table th { font-size: .72rem; }
+      .rating-table td:first-child { font-size: .8rem; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div class="eyebrow">Ministry of Health &amp; Medical Services · Fiji</div>
+      <h1>Participant Feedback Form</h1>
+      <p><strong>Cancer Awareness &amp; Patient Care Education Programme</strong></p>
+      <div class="theme">“Every Story is Unique, Every Journey Matters”</div>
+      <p>Oncology Department · Colonial War Memorial Hospital</p>
+      <div class="ribbons" aria-hidden="true">🎗️ 💗 🎗️</div>
+    </header>
+
+    <section class="content">
+      <p class="intro">Thank you for attending. Your feedback will help the Oncology Department evaluate this programme and improve future educational sessions.</p>
+
+      <form id="feedbackForm">
+        <h2 class="section-title">Section A — Overall Programme Evaluation</h2>
+        <p class="small">Select one rating for each item: 5 = Excellent, 4 = Very good, 3 = Good, 2 = Fair, 1 = Poor.</p>
+        <table class="rating-table">
+          <thead>
+            <tr>
+              <th scope="col">Evaluation item</th>
+              <th scope="col">5<br>Excellent</th>
+              <th scope="col">4<br>Very good</th>
+              <th scope="col">3<br>Good</th>
+              <th scope="col">2<br>Fair</th>
+              <th scope="col">1<br>Poor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Relevance of topics</td><td><input type="radio" name="relevance" value="5" aria-label="Relevance 5" required></td><td><input type="radio" name="relevance" value="4" aria-label="Relevance 4"></td><td><input type="radio" name="relevance" value="3" aria-label="Relevance 3"></td><td><input type="radio" name="relevance" value="2" aria-label="Relevance 2"></td><td><input type="radio" name="relevance" value="1" aria-label="Relevance 1"></td></tr>
+            <tr><td>Clarity of presentations</td><td><input type="radio" name="clarity" value="5" aria-label="Clarity 5" required></td><td><input type="radio" name="clarity" value="4" aria-label="Clarity 4"></td><td><input type="radio" name="clarity" value="3" aria-label="Clarity 3"></td><td><input type="radio" name="clarity" value="2" aria-label="Clarity 2"></td><td><input type="radio" name="clarity" value="1" aria-label="Clarity 1"></td></tr>
+            <tr><td>Knowledge and delivery of speakers</td><td><input type="radio" name="speakers" value="5" aria-label="Speakers 5" required></td><td><input type="radio" name="speakers" value="4" aria-label="Speakers 4"></td><td><input type="radio" name="speakers" value="3" aria-label="Speakers 3"></td><td><input type="radio" name="speakers" value="2" aria-label="Speakers 2"></td><td><input type="radio" name="speakers" value="1" aria-label="Speakers 1"></td></tr>
+            <tr><td>Programme organisation</td><td><input type="radio" name="organisation" value="5" aria-label="Organisation 5" required></td><td><input type="radio" name="organisation" value="4" aria-label="Organisation 4"></td><td><input type="radio" name="organisation" value="3" aria-label="Organisation 3"></td><td><input type="radio" name="organisation" value="2" aria-label="Organisation 2"></td><td><input type="radio" name="organisation" value="1" aria-label="Organisation 1"></td></tr>
+            <tr><td>Overall learning experience</td><td><input type="radio" name="learning" value="5" aria-label="Learning 5" required></td><td><input type="radio" name="learning" value="4" aria-label="Learning 4"></td><td><input type="radio" name="learning" value="3" aria-label="Learning 3"></td><td><input type="radio" name="learning" value="2" aria-label="Learning 2"></td><td><input type="radio" name="learning" value="1" aria-label="Learning 1"></td></tr>
+          </tbody>
+        </table>
+
+        <h2 class="section-title">Section B — Presentations Attended</h2>
+        <div class="session-list">
+          <label class="choice"><input type="checkbox" name="sessions" value="Breast Cancer"> Breast Cancer Awareness</label>
+          <label class="choice"><input type="checkbox" name="sessions" value="Colon Cancer"> Colon Cancer Awareness</label>
+          <label class="choice"><input type="checkbox" name="sessions" value="Post-Operative Care"> Post-Operative Care</label>
+          <label class="choice"><input type="checkbox" name="sessions" value="Palliative Care"> Palliative Care</label>
+          <label class="choice"><input type="checkbox" name="sessions" value="Pain Management"> Pain Management</label>
+        </div>
+
+        <h2 class="section-title">Section C — Your Feedback</h2>
+        <div class="field">
+          <label class="question" for="valuable">1. What was the most valuable thing you learned?</label>
+          <textarea id="valuable" name="valuable" placeholder="Share your thoughts..."></textarea>
+        </div>
+        <div class="field">
+          <label class="question" for="improve">2. What could we improve for future programmes?</label>
+          <textarea id="improve" name="improve" placeholder="Your suggestions..."></textarea>
+        </div>
+        <div class="field">
+          <label class="question" for="understanding">3. How has this programme improved your understanding of cancer awareness or patient care?</label>
+          <textarea id="understanding" name="understanding" placeholder="Describe what you learned..."></textarea>
+        </div>
+
+        <div class="privacy"><strong>Privacy note:</strong> Feedback is voluntary. Please do not include patient names or confidential medical details. This sample page does not currently transmit or save responses.</div>
+
+        <div class="actions">
+          <button type="submit" class="submit">Submit Feedback</button>
+          <button type="reset" class="reset">Clear Form</button>
+        </div>
+        <div class="status" id="status" role="status" aria-live="polite"></div>
+      </form>
+    </section>
+    <footer>Thank you for your contribution.<br><strong>Oncology Department · Colonial War Memorial Hospital, Fiji</strong></footer>
+  </main>
+
+  <script>
+    /*
+      FUTURE CONNECTION:
+      This is a front-end sample only. To collect submissions, connect the form
+      to an approved backend such as Google Apps Script / Google Sheets, or another
+      hospital-approved form service. Do not publish until the submission endpoint
+      and privacy arrangements have been tested.
+    */
+    const form = document.getElementById('feedbackForm');
+    const statusBox = document.getElementById('status');
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      statusBox.style.display = 'block';
+      statusBox.textContent =
+        'Thank you for testing the sample form. Online submission is not connected yet, so your responses have not been sent or saved.';
+      statusBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    form.addEventListener('reset', function () {
+      statusBox.style.display = 'none';
+      statusBox.textContent = '';
+    });
+  </script>
+</body>
+</html>
